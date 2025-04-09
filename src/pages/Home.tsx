@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { FaSearch } from "react-icons/fa";
-import MovieCard from '../components/MovieCard';
 import { searchMovies } from '../api/movieApi';
+import { Link } from 'react-router-dom';
 
 type Movie = {
   id: string,
@@ -51,10 +51,14 @@ const Home = () => {
         <div className='grid gap-8 mt-20 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {
           movieData.map((movie: Movie) => (
-            <MovieCard 
-              key={movie.id}
-              movie={movie}
-            />
+            <Link to={`/movie/${movie.id}`} key={movie.id} className="hover:scale-105 transition">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                className="rounded-xl w-[200px] shadow-md"
+              />
+              <p className="text-center text-white mt-2">{movie.title}</p>
+            </Link>
           ))
         }
         </div>
